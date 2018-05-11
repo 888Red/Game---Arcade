@@ -100,11 +100,20 @@ Player.prototype.handleInput = function(keyPress) {
 let showPoints = document.getElementById('points');
 let counter = 0;
 
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
+var player = new Player(210, 380, 50);
+
+const enemyA = new Enemy(-100, 227.5, 50);
+const enemyB = new Enemy(-500, 227.5, 50);
+const enemyC = new Enemy(-150, 145, 50);
+const enemyD = new Enemy(-400, 61, 50);
+const enemyE = new Enemy(-200, 61, 50);
+const enemyF = new Enemy(-300, 61, 50);
+let allEnemies = [];
+allEnemies.push(enemyA, enemyB, enemyC, enemyD, enemyE, enemyF);
 
 
 // This listens for key presses and sends the keys to your
