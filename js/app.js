@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
@@ -21,19 +21,41 @@ Enemy.prototype.update = function(dt) {
 
     // When enemy is beyond canvas width, it goes back to the left side
     if (this.x > 510) {
-      this.x = -100;
-      this.speed = 80 + Math.floor(Math.random() * 180);
+        this.x = -100;
+        this.speed = 80 + Math.floor(Math.random() * 180);
     }
+    checkCollisions(this);
+};
 
-    // When collision happens, player goes back to the bottom
-    if (player.x < this.x + 68 &&
-        player.x + 38 > this.x &&
-        player.y < this.y + 38 &&
-        30 + player.y > this.y) {
-          player.x = 210;
-          player.y = 380;
+// When collision happens, player goes back to the bottom
+let checkCollisions = function () {
+   for (var i = 0; i < allEnemies.length; i++) {
+     if (player.x < allEnemies[i].x + 68 &&
+        player.x + 38 > allEnemies[i].x &&
+        player.y < allEnemies[i].y + 38 &&
+        30 + player.y > allEnemies[i].y) {
+          resetPlayer();
+          player.lives -=1;
+          if (player.lives === 0) {
+            gameOver();
+          }
+       }
     }
 };
+
+function resetPlayer() {
+    player.x = 210;
+    player.y = 380;
+};
+
+let gameOver = function() {
+    alert("Sorry! Game Over! Please refresh the page to start again.");
+    counter = 0;
+    showPoints.innerHTML = counter;
+    resetPlayer();
+    player.lives = 0;
+};
+
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -46,6 +68,7 @@ var Player = function(x, y, speed) {
     this.y = y;
     this.speed = speed;
     this.sprite = 'images/char-pink-girl.png';
+    this.lives = 3;
 };
 
 // This class requires an update(), render() and
@@ -100,6 +123,7 @@ Player.prototype.handleInput = function(keyPress) {
 let showPoints = document.getElementById('points');
 let counter = 0;
 
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -114,7 +138,6 @@ const enemyE = new Enemy(-200, 61, 50);
 const enemyF = new Enemy(-300, 61, 50);
 let allEnemies = [];
 allEnemies.push(enemyA, enemyB, enemyC, enemyD, enemyE, enemyF);
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
