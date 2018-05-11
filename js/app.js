@@ -2,6 +2,9 @@
 var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -14,6 +17,22 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += this.speed * dt;
+
+    // When enemy is beyond canvas width, it goes back to the left side
+    if (this.x > 510) {
+      this.x = -100;
+      this.speed = 80 + Math.floor(Math.random() * 180);
+    }
+
+    // When collision happens, player goes back to the bottom
+    if (player.x < this.x + 68 &&
+        player.x + 38 > this.x &&
+        player.y < this.y + 38 &&
+        30 + player.y > this.y) {
+          player.x = 210;
+          player.y = 380;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
