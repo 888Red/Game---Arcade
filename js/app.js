@@ -27,7 +27,8 @@ Enemy.prototype.update = function(dt) {
     checkCollisions(this);
 };
 
-// When collision happens, player goes back to the bottom
+// When collision happens, player goes back to the bottom,
+// and player's life is reduced
 let checkCollisions = function () {
    for (var i = 0; i < allEnemies.length; i++) {
      if (player.x < allEnemies[i].x + 68 &&
@@ -42,12 +43,12 @@ let checkCollisions = function () {
        }
     }
 };
-
+//puts back the player to starting block
 function resetPlayer() {
     player.x = 210;
     player.y = 380;
 };
-
+//alert that game is over (will improve this in the future)
 let gameOver = function() {
     alert("Sorry! Game Over! Please refresh the page to start again.");
     counter = 0;
@@ -55,7 +56,6 @@ let gameOver = function() {
     resetPlayer();
     player.lives = 0;
 };
-
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
@@ -91,8 +91,7 @@ Player.prototype.update = function() {
     // When the water is reached, player goes back to the bottom
     // and earns 500 points
     if (this.y < 0) {
-        this.x = 210;
-        this.y = 380;
+        resetPlayer();
         counter = counter + 500;
         showPoints.innerHTML = counter;
     }
@@ -119,10 +118,9 @@ Player.prototype.handleInput = function(keyPress) {
      }
 };
 
-//Give points
+//Show points on the page
 let showPoints = document.getElementById('points');
 let counter = 0;
-
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
