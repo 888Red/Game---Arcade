@@ -75,6 +75,31 @@ Player.prototype.update = function() {
     }
 };
 
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Player.prototype.handleInput = function(keyPress) {
+    switch (keyPress) {
+        case 'up':
+          this.y -= this.speed + 30;
+          break;
+        case 'down':
+          this.y += this.speed + 30;
+          break;
+        case 'left':
+          this.x -= this.speed + 50;
+          break;
+        case 'right':
+          this.x += this.speed + 50;
+          break;
+     }
+};
+
+//Give points
+let showPoints = document.getElementById('points');
+let counter = 0;
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
