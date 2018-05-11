@@ -51,6 +51,30 @@ var Player = function(x, y, speed) {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+Player.prototype.update = function() {
+    // Keep player inside the canvas
+    if (this.y > 380) {
+        this.y = 380;
+    }
+
+    if (this.x > 400) {
+        this.x = 400;
+    }
+
+    if (this.x < 0) {
+        this.x = 0;
+    }
+
+    // When the water is reached, player goes back to the bottom
+    // and earns 500 points
+    if (this.y < 0) {
+        this.x = 210;
+        this.y = 380;
+        counter = counter + 500;
+        showPoints.innerHTML = counter;
+    }
+};
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
