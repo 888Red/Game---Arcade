@@ -6,7 +6,7 @@ For detailed instructions on how to get started, check out this [guide](https://
 
 ## Steps to Complete the Project
 
-* Download the [art assets and provided game engine)(https://github.com/udacity/frontend-nanodegree-arcade-game).
+* Download the [art assets and provided game engine](https://github.com/udacity/frontend-nanodegree-arcade-game).
 * Read the project instructions above.
 * Learn and review Object Oriented JavaScript & HTML5 Canvas.
 * Understand the [Project Rubric](https://review.udacity.com/?_ga=1.242571394.1230547285.1451946706#!/rubrics/15/view)
@@ -32,7 +32,7 @@ For detailed instructions on how to get started, check out this [guide](https://
 * Player has only 3 lives and loses one after a collision.
 * When the player reaches the water, it earns 500 points and goes back to the bottom to cross again.
 
-![Screenshot]()
+![Screenshot](https://github.com/888Red/Game---Arcade/blob/master/images/screenshot.jpg)
 
 ## Demo
 
